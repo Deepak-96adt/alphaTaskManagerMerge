@@ -1,10 +1,10 @@
-package com.taskManager.taskManager;
+package com.alphaTaskManager.alphaTaskManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaskManagerApplicationTests {
+class AlphaTaskManagerApplicationTests {
 
 	@Test
 	void contextLoads() {
