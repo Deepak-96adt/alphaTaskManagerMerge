@@ -17,7 +17,7 @@ public class Project {
 	
 	public Project() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Project(long project_id, String project_name, String project_description, Date date) {
