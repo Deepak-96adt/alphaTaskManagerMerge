@@ -1,13 +1,14 @@
-package com.taskManager.taskManager;
+package com.alphaTaskManager.alphaTaskManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TaskManagerApplication {
+public class AlphaTaskManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TaskManagerApplication.class, args);
+		SpringApplication.run(AlphaTaskManagerApplication.class, args);
+		System.out.println("working");
 	}
 
 }
