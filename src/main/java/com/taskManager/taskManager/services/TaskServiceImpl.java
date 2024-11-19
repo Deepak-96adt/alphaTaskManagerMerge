@@ -1,13 +1,17 @@
-package com.alphaTaskManager.alphaTaskManager.Services;
+package com.taskManager.taskManager.services;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alphaTaskManager.alphaTaskManager.Entity.Task;
-import com.alphaTaskManager.alphaTaskManager.Repository.TaskRepository;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.taskManager.taskManager.entities.Task;
+import com.taskManager.taskManager.repository.TaskRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -18,8 +22,10 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	@Override
-	public List<Task> addtask(List<Task> task) {
-		return taskRepository.saveAll(task);
+	public Task addtask(Task task) {
+			Date date= new Date();
+			task.setCreatedAt(date);
+			return taskRepository.save(task);
 	}
 	
 	@Override
@@ -47,6 +53,8 @@ public class TaskServiceImpl implements TaskService {
 	public String updateTask(Task task) {
 		Optional<Task> ById = taskRepository.findById(task.getTaskId());
 		if(ById.isPresent()) {
+			Date date = new Date();
+			task.setUpdatedAt(date);
 			taskRepository.save(task);
 			return "Updated successfully";
 		}else {
@@ -59,6 +67,8 @@ public class TaskServiceImpl implements TaskService {
 		Optional<Task> ById = taskRepository.findById(id);
 		if(ById.isPresent()) {
 			ById.get().setStatus(task.getStatus());
+			Date date = new Date();
+			ById.get().setUpdatedAt(date);
 			return "Updated successfully";
 		}else {
 			return "Not found";

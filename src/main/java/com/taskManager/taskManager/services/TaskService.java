@@ -1,14 +1,14 @@
-package com.alphaTaskManager.alphaTaskManager.Services;
+package com.taskManager.taskManager.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.alphaTaskManager.alphaTaskManager.Entity.Task;
+import com.taskManager.taskManager.entities.Task;
 
 
 public interface TaskService {
 
-	List<Task> addtask(List<Task> task);
+	Task addtask(Task task);
 
     List<Task> getalltask();
 

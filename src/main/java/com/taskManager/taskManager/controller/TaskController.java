@@ -1,4 +1,4 @@
-package com.alphaTaskManager.alphaTaskManager.Controller;
+package com.taskManager.taskManager.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alphaTaskManager.alphaTaskManager.Entity.Task;
-import com.alphaTaskManager.alphaTaskManager.Repository.TaskRepository;
-import com.alphaTaskManager.alphaTaskManager.Services.TaskService;
+import com.taskManager.taskManager.entities.Task;
+import com.taskManager.taskManager.repository.TaskRepository;
+import com.taskManager.taskManager.services.TaskService;
 
 @RestController
 @RequestMapping("/task")
@@ -29,7 +29,7 @@ public class TaskController {
 	private TaskRepository taskRepo;
 	
 	@PostMapping("/add")
-	public List<Task> addTask(@RequestBody List<Task> task){
+	public Task addTask(@RequestBody Task task){
 		return taskService.addtask(task);
 	}
 	
