@@ -1,5 +1,6 @@
 package com.taskManager.taskManager.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,26 +31,39 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project addProject(Project project) {
+		project.setCreatedAt(new Date());
 		return projectRepository.save(project);
+	}
+
+	@Override
+	public String deleteProject(long projectId) {
+		Optional<Project> project = projectRepository.findById(projectId);
+		if (project.isPresent()){
+			projectRepository.deleteById(projectId);
+			return "Project Deleted Successfully";
+		}
+		else {
+			return "Project not found";
+		}
 	}
 
 	@Override
 	public String updateProjectById(long projectId , Project projectObj) {
 		Optional<Project> project = projectRepository.findById(projectId);
 		if (project.isPresent()) {
-			if (projectObj.getProjectName()!=null) {				
+			if (projectObj.getProjectName()!=null) {
 				project.get().setProjectName(projectObj.getProjectName());
 			}
-			
-			if (projectObj.getProjectDescription()!=null) {				
+
+			if (projectObj.getProjectDescription()!=null) {
 				project.get().setProjectDescription(projectObj.getProjectDescription());
 			}
-			return "project updated successfully , name = "+projectObj.getProjectName()+", desc = "+projectObj.getProjectDescription();
+			return "project updated successfully";
 		}
 		else {
 			return "something went wrong !!";
 		}
-		
+
 	}
 
 }
