@@ -28,12 +28,12 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepo;
 	
-	@PostMapping("/add")
+	@PostMapping
 	public Task addTask(@RequestBody Task task){
 		return taskService.addtask(task);
 	}
 	
-	@GetMapping("/getalltask")
+	@GetMapping
 	public List<Task> getAllTask(){
 		return taskService.getalltask();
 	}
@@ -43,7 +43,7 @@ public class TaskController {
 //		return taskService.gettaskbyid(id);
 //	}
 	
-	@GetMapping("/getbyid/{id}")
+	@GetMapping("/{id}")
 	public List<Task> getTaskById(@PathVariable int id){
 		return taskRepo.findAllSortedById(id);
 	}
@@ -53,18 +53,18 @@ public class TaskController {
 		return taskRepo.findAllSortedByStatus(status);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public String deleteTask(@PathVariable int id) {
 		return taskService.deletetask(id);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping
 	public String updateTask(@RequestBody Task task) {
 		return taskService.updateTask(task);
 	}
 	
-	@PatchMapping("/updatebyid/{id}")
-	public String updateTaskById(@PathVariable int id, @RequestBody Task task) {
-		return taskService.updatetaskbyid(id,task);
-	}
+//	@PatchMapping("/updatebyid/{id}")
+//	public String updateTaskById(@PathVariable int id, @RequestBody Task task) {
+//		return taskService.updatetaskbyid(id,task);
+//	}
 }
