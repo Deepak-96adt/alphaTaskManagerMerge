@@ -1,40 +1,47 @@
 package com.taskManager.taskManager.controller;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.taskManager.taskManager.entities.Project;
 import com.taskManager.taskManager.services.ProjectService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
+@RequestMapping("/project")
+@Validated
 public class ProjectController {
-	
-	@Autowired
-	private ProjectService projectService;
-	
-	@GetMapping("/getProjects")
-	public List<Project> getProjects(){
-		return this.projectService.getProjects();
+
+	private final ProjectService projectService;
+
+	public ProjectController(ProjectService projectService) {
+		this.projectService = projectService;
 	}
 
-//	@GetMapping("/getProjectById/{projectId}")
-//	public Project getProject(@PathVariable String projectId){
-//		return this.projectService.getProjectById(Long.parseLong(projectId));
-//	}
-	
-	@PostMapping("/addProject")
-	public Project addProject(@RequestBody Project project) {
-		return this.projectService.addProject(project);
-	}
-	
-	@PatchMapping("/updateProjectById/{projectId}")
-	public String updateProject(@PathVariable String projectId , @RequestBody Project project) {
-		return this.projectService.updateProjectById(Long.parseLong(projectId) , project);
+	@GetMapping
+	public ResponseEntity<List<Project>> getAllProjects() {
+		List<Project> projects = projectService.getProjects();
+		return ResponseEntity.ok(projects);
 	}
 
-	@DeleteMapping("/deleteProjectById/{projectId}")
-	public String deleteProject(@PathVariable String projectId){return this.projectService.deleteProject(Long.parseLong(projectId));}
+	@PostMapping
+	public ResponseEntity<Project> addProject(@Valid @RequestBody Project project) {
+		Project savedProject = projectService.addProject(project);
+		return ResponseEntity.status(201).body(savedProject);
+	}
 
+	@PatchMapping("/{projectId}")
+	public ResponseEntity<String> updateProject(
+			@PathVariable Long projectId,
+			@Valid @RequestBody Project project) {
+		String result = projectService.updateProjectById(projectId, project);
+		return ResponseEntity.ok(result);
+	}
+
+	@DeleteMapping("/{projectId}")
+	public ResponseEntity<String> deleteProject(@PathVariable Long projectId) {
+		String result = projectService.deleteProject(projectId);
+		return ResponseEntity.ok(result);
+	}
 }
