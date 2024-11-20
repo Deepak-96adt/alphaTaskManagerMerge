@@ -18,7 +18,7 @@ public interface TaskService {
 
 	String updateTask(Task task);
 
-	String updatetaskbyid(int id, Task task);
+//	String updatetaskbyid(int id, Task task);
 
 //	List<Task> findByStatus(String status);
 
