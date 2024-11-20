@@ -45,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
 			 taskRepository.deleteById(id);
 			 return "Deleted task successfully";
 		 }else {
-			 return "Not found";
+			 return "Not found";	
 		 }
 	}
 
@@ -62,17 +62,17 @@ public class TaskServiceImpl implements TaskService {
 		}
 	}
 
-	@Override
-	public String updatetaskbyid(int id, Task task) {
-		Optional<Task> ById = taskRepository.findById(id);
-		if(ById.isPresent()) {
-			ById.get().setStatus(task.getStatus());
-			Date date = new Date();
-			ById.get().setUpdatedAt(date);
-			return "Updated successfully";
-		}else {
-			return "Not found";
-		}
-	}
+//	@Override
+//	public String updatetaskbyid(int id, Task task) {
+//		Optional<Task> ById = taskRepository.findById(id);
+//		if(ById.isPresent()) {
+//			ById.get().setStatus(task.getStatus());
+//			Date date = new Date();
+//			ById.get().setUpdatedAt(date);
+//			return "Updated successfully";
+//		}else {
+//			return "Not found";
+//		}
+//	}
 
 }
