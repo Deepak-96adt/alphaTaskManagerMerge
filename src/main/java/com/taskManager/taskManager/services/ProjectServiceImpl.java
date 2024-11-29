@@ -16,7 +16,8 @@ public class ProjectServiceImpl implements ProjectService {
 	ProjectRepository projectRepository;
 
 	@Override
-	public List<Project> getProjects() {
+	public List<Project> getProjects()
+	{
 		return projectRepository.findAll();
 	}
 
@@ -26,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public String deleteProject(Long projectId) {
+	public String deleteProject(int projectId) {
 		Optional<Project> project = projectRepository.findById(projectId);
 		if (project.isPresent()){
 			projectRepository.deleteById(projectId);
@@ -38,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public String updateProjectById(Long projectId, Project projectObj) {
+	public String updateProjectById(int projectId, Project projectObj) {
 		Optional<Project> project = projectRepository.findById(projectId);
 		if (project.isPresent()) {
 			if (projectObj.getProjectName()!=null) {

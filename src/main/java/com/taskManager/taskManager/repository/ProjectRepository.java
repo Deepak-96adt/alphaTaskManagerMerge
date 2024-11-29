@@ -3,7 +3,9 @@ package com.taskManager.taskManager.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.taskManager.taskManager.entities.Project;
+import org.springframework.stereotype.Repository;
 
-public interface ProjectRepository extends JpaRepository<Project, Long> {
+@Repository
+public interface ProjectRepository extends JpaRepository<Project, Integer> {
 	
 }

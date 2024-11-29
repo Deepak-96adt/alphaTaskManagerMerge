@@ -1,29 +1,10 @@
-//package com.taskManager.taskManager.services;
-//
-//import java.util.List;
-//
-//import com.taskManager.taskManager.entities.Project;
-//
-//public interface ProjectService {
-//
-//	public List<Project> getProjects();
-//
-//	//	public Project getProjectById(long projectId);
-//
-//	public Project addProject(Project project);
-//
-//	public String deleteProject(long projectId);
-//
-//	public String updateProjectById(long projectId , Project project);
-//
-//
-//}
-
-
 package com.taskManager.taskManager.services;
 import com.taskManager.taskManager.entities.Project;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public interface ProjectService {
 
 	/**
@@ -38,16 +19,12 @@ public interface ProjectService {
 	Project addProject(Project project);
 
 	/**
-	 * Delete a project by its ID.
+	     Delete a project by its ID.
 	 */
-	String deleteProject(Long projectId);
+	String deleteProject(int projectId);
 
 	/**
-	 * Update a project by its ID.
-	 *
-	 * @param projectId ID of the project to update.
-	 * @param project   The updated project details.
-	 * @return A message indicating the result of the operation.
-	 */
-	String updateProjectById(Long projectId, Project project);
+	 	 Update a project by its ID.
+	*/
+	String updateProjectById(int projectId, Project project);
 }

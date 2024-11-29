@@ -36,14 +36,14 @@ public class ProjectController {
 
 	@PatchMapping("/{projectId}")
 	public ResponseEntity<String> updateProject(
-			@PathVariable Long projectId,
+			@PathVariable int projectId,
 			@Valid @RequestBody Project project) {
 		String result = projectService.updateProjectById(projectId, project);
 		return ResponseEntity.ok(result);
 	}
 
 	@DeleteMapping("/{projectId}")
-	public ResponseEntity<String> deleteProject(@PathVariable Long projectId) {
+	public ResponseEntity<String> deleteProject(@PathVariable int projectId) {
 		String result = projectService.deleteProject(projectId);
 		return ResponseEntity.ok(result);
 	}
